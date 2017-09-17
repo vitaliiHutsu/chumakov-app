@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div class="modal fade" tabindex="-1" id="modalNewClient" role="dialog" ng-controller="ctrlNewClient" th:fragment="fragmentModalNewClient">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Новый клиент</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="nameClient">Ф.И.О. Клиента:</label>
+                        <label for="nameClient" ng-show="errorName" class="errorTitle">Поле не должно быть пустым!</label>
+                        <input type="text" class="form-control" ng-class="errorInputValidName" ng-keydown="focusErrorName()"
+                               ng-model="client.name" id="nameClient" placeholder="Ф.И.О."/>
+                    </div>
+                    <div class="form-group">
+                        <label for="companyClient">Компания:</label>
+                        <input type="text" class="form-control" ng-model="client.titleCompany" id="companyClient" placeholder="Компания"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneClient">Телефон:</label>
+                        <label for="phoneClient" ng-show="errorPhone" class="errorTitle">Поле не должно быть пустым!</label>
+                        <input type="number" class="form-control" ng-class="errorInputValidPhone" ng-model="client.phone"
+                               ng-keydown="focusErrorPhone()" id="phoneClient" placeholder="Телефон"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="emailClient">Email:</label>
+                        <input type="email" class="form-control" ng-model="client.email" id="emailClient" placeholder="Email"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="skypeClient">Skype:</label>
+                        <input type="text" class="form-control" ng-model="client.skype" id="skypeClient" placeholder="Skype"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="notationClient">Примечания:</label>
+                        <textarea class="form-control" id="notationClient" ng-model="client.notation" placeholder="Примечания"
+                                  rows="3"></textarea>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="btnAddNewClient(client)">Добавить</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--Modal add new client and-->
+
+</body>
+</html>

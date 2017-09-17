@@ -1,0 +1,93 @@
+
+.panel-login{
+    margin-top: 65px;
+}
+.login-page h1{
+    color: darkgray;!important;
+    text-align: center;
+}
+
+.errorTitle{
+    color: red;!important;
+}
+.errorInput{
+    border-color: red;
+}
+.scrollTableAllClients{
+    height: 450px!important;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
+.scrollTableAllProduct{
+    height: 100%;!important;
+    max-height: 400px;!important;
+    overflow-y: scroll;
+
+
+}
+[ng\:cloak], [ng-cloak], .ng-cloak{
+    display: none;
+}
+.footer{
+    height: 50px;!important;
+    border-color: #0f0f0f;!important;
+}
+
+.getDetalCssBtn{
+    border: none;!important;
+    background-color: transparent;!important;
+}
+
+.getDetalCssBtn:after{
+    border: none;!important;
+    background-color: transparent;!important;
+}
+
+.panel-heading.panel-product-category{
+    padding: 3px;!important;
+    padding-left: 10%;!important;
+}
+
+.square {
+    margin: 0;
+    counter-reset: li;
+    list-style: none;
+    padding: 10px;
+}
+.square li {
+    position: relative;
+    margin: 0 0 10px 2em;
+    padding: 4px 8px;
+    border-top: 2px solid #787A77;
+    transition: .3s linear;
+}
+.square a{
+    text-decoration: none;
+}
+.square li:last-child {margin-bottom: 0;}
+.square li:before {
+    content: counter(li);
+    counter-increment: li;
+    position: absolute;
+    top: -2px;
+    left: -2em;
+    width: 2em;
+    box-sizing: border-box;
+    margin-right: 8px;
+    padding: 4px;
+    border-top: 2px solid #787A77;
+    border-left: 2px solid transparent;
+    border-right: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    background: #787A77;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    transition: .3s linear;
+}
+.square li:hover {border-top: 2px solid #389F70;}
+.square li:hover:before {
+    border: 2px solid #389F70;
+    background: #98EABA;
+}

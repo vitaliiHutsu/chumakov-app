@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="fragmentGetAllClient" ng-controller="ctrlAllClient">
+
+    <div class="modal fade" tabindex="-1" id="detalisClient" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Клент</h4>
+                </div>
+                <div class="modal-body">
+
+                    <blockquote>
+                        <p>Имя клиента: {{clientDetal.name}}</p>
+                        <footer> <cite title="Source Title">Телефон: </cite>{{clientDetal.phone}}</footer>
+                        <footer> <cite title="Source Title">Компания: </cite>{{clientDetal.titleCompany}}</footer>
+                        <footer> <cite title="Source Title">Email: </cite>{{clientDetal.email}}</footer>
+                        <footer> <cite title="Source Title">Skype: </cite>{{clientDetal.skype}}</footer>
+                        <footer> <cite title="Source Title">Примечания: </cite>{{clientDetal.notation}}</footer>
+                    </blockquote>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+
+    <div class="scrollTableAllClients">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Имя</th>
+                <th>Компания</th>
+                <th>Телефон</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="x in clients">
+                <td>{{$index}}</td>
+                <td><button class="getDetalCssBtn" data-toggle="modal" ng-click="btnAddNewClient(x.id)" data-target="#detalisClient">{{x.name}}</button></td>
+                <td>{{x.titleCompany}}</td>
+                <td>{{x.phone}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

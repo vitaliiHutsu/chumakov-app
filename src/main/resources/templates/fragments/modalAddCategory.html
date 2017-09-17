@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" ng-app="app">
+<head>
+    <title>Spring Boot Thymeleaf + Spring Security</title>
+
+    <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body ng-controller="ctrlProduct">
+
+<div th:fragment="modalAddNewCategory">
+    <!-- Modal -->
+    <div class="modal fade" id="modalNewCategoryBtn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Новая категория:</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="newTitleCategory">Названия категория</label>
+                        <p class="errorTitle" ng-show="errorNonText">Поле не должно быть пустым!!!</p>
+                        <p class="errorTitle" ng-show="errorValidTextCategory">Есть такая категория!!!</p>
+                        <input type="text" class="form-control" ng-keydown="keydownInputText()" ng-class="errorNonInput"
+                               id="newTitleCategory" ng-model="category.title" placeholder="Названия"/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="addNewCategoryBtn()">Сохранить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

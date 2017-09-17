@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" ng-app="app">
+<head>
+
+
+    <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body ng-cloak="">
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container-fluid" ng-controller="ctrlProduct">
+    <div class="row">
+
+        <!--category-->
+
+        <div class="col-md-3">
+            <div th:replace="fragments/modalAddCategory :: modalAddNewCategory"/>
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><h4>Категории</h4></div>
+                <div class="panel-body">
+                    <div class="scrollTableAllProduct">
+                        <ol class="square">
+                            <div ng-repeat="x in allCategory" style="padding-top: 5px;">
+                                <a href="#category" ng-click="getCategoryById(x)">
+                                    <li>{{x}}</li>
+                                </a>
+                            </div>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <hr/>
+            <button type="button" class="btn btn-default" data-toggle="modal"
+                    data-target="#modalNewCategoryBtn">
+                Новая категория
+            </button>
+
+        </div>
+
+        <!--category end-->
+
+        <!--product-->
+
+        <div class="col-md-6">
+
+            <div th:replace="fragments/modalAddProduct :: modalAddNewProduct"/>
+            <div th:replace="fragments/modalDetalProduct :: modalProductDetalis"/>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Товары</div>
+                <div class="panel-body">
+                    <div class="scrollTableProduct">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>№</th>
+                                <th>Модель</th>
+                                <th>Цена закупки</th>
+                                <th>Цена продажи</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="x in allProducts">
+                                <td>{{$index + 1}}</td>
+                                <td><a href="#{{x.title}}"
+                                       ng-click="getDetalisProduct(x.id)"
+                                       data-toggle="modal" data-target="#modalProductDetalis">{{x.title}}</a></td>
+                                <td>{{x.purchasePrice | currency}}</td>
+                                <td>{{x.sellingPrice | currency}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+
+            <button type="button" class="btn btn-default" data-toggle="modal"
+                    ng-click="newDataProductBtn()" data-target="#modalNewProductBtn">
+                Новый товар
+            </button>
+        </div>
+        <!--product end-->
+
+        <!--Brand-->
+        <div class="col-md-3">
+
+            <div th:replace="fragments/modalAddBrand :: modalAddNewBrand"/>
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><h4>Бренд</h4></div>
+                <div class="panel-body">
+                    <div class="scrollTableProduct">
+                        <ol class="square">
+                            <div ng-repeat="x in allBrands" style="padding-top: 5px;">
+                                <a href="#click" ng-click=""><li>{{x.title}}</li></a>
+                            </div>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+
+            <button type="button" class="btn btn-default" data-toggle="modal"
+                    data-target="#modalNewBrandBtn">
+                Новый бренди
+            </button>
+        </div>
+        <!--Brand end-->
+    </div>
+</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

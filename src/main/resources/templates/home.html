@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" ng-app="app">
+<head>
+
+    <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body ng-cloak="">
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4">
+
+
+            <div th:replace="fragments/newClientModel :: fragmentModalNewClient"/>
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><h4>Клиенты</h4></div>
+                <div class="panel-body">
+
+                    <div th:replace="fragments/getAllClient :: fragmentGetAllClient"/>
+                    <a class="btn btn-default" href="#" style="margin-top: 7px" role="button" data-toggle="modal" data-target="#modalNewClient">Новый клиент</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">.col-sm-4</div>
+        <div class="col-sm-4">.col-sm-4</div>
+    </div>
+</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>
