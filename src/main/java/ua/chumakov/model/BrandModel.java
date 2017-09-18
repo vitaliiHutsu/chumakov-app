@@ -34,7 +34,7 @@ public class BrandModel implements Serializable {
             joinColumns = @JoinColumn(name = "sale_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "brand_model_id", referencedColumnName = "id"))
     @JsonBackReference
-    private Set<Sale> sales;
+    private Set<Sale> sales = new HashSet<>();
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "category_brand_model")
     @JsonManagedReference

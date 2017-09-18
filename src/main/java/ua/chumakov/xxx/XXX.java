@@ -9,16 +9,10 @@ import java.util.stream.Collectors;
  */
 public class XXX {
     public static void main(String[] args) {
-        List<Person> personList = Arrays.asList(
-                new Person("Vitalii", 32),
-                new Person("Natasha", 36),
-                new Person("Dima", 4),
-                new Person("Ludmila", 33),
-                new Person("Natasha", 41)
-        );
-        List<Person> fitred = personList.stream().filter(x-> x.name.startsWith("N")).collect(Collectors.toList());
+       String fitred = "test_brend_3";
 
-        System.out.println(fitred);
+       String[] strings = fitred.split(",");
+        System.out.println(Arrays.toString(strings));
 
     }
 }

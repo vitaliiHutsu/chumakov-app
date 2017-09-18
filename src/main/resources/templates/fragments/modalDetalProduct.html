@@ -16,10 +16,28 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Test Product</h4>
+                    <h4 class="modal-title" id="myModalLabel">Описания товара</h4>
                 </div>
                 <div class="modal-body">
-                    <h1>{{hello}}</h1>
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h4>{{detalProduct.title}}</h4></div>
+                        <div class="panel-body">
+                            <blockquote>
+                                <p>Цена закупки</p>
+                                <footer>{{detalProduct.purchasePrice | currency}}<cite title="Source Title"></cite></footer>
+                            </blockquote>
+
+                            <blockquote>
+                                <p>Цена продажи</p>
+                                <footer>{{detalProduct.sellingPrice | currency}}<cite title="Source Title"></cite></footer>
+                            </blockquote>
+
+                            <blockquote>
+                                <p>Бренды</p>
+                                <footer ng-repeat="x in detalProduct.brands">{{x.title}}<cite title="Source Title"></cite></footer>
+                            </blockquote>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>

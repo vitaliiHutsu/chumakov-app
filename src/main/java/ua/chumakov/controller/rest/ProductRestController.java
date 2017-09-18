@@ -99,7 +99,7 @@ public class ProductRestController {
 
     @RequestMapping(value = "addNewProduct/", method = RequestMethod.GET)
     public ResponseEntity<?> addProduct(@RequestParam String titleProduct,
-                                        @RequestParam String brendProduct,
+                                        @RequestParam String brendProducts,
                                         @RequestParam String categoryProduct,
                                         @RequestParam String purchasePriceProduct,
                                         @RequestParam String percentageMarkupProduct,
@@ -117,11 +117,16 @@ public class ProductRestController {
         } catch (DataIntegrityViolationException ex) {
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
-        brandModelRepository.save(brandModel);
-        Brand brand = repositoryBrand.findByTitle(brendProduct);
-        brand.getBrandModels().add(brandModelRepository.findByTitle(titleProduct));
-        repositoryBrand.save(brand);
-        System.out.println(wrappingPrice);
+
+        BrandModel updateBrandModel = brandModelRepository.findByTitle(titleProduct);
+
+        String[] titleBrands = brendProducts.split(",");
+        for (String titleBrand : titleBrands) {
+            Brand brand = repositoryBrand.findByTitle(titleBrand);
+            brand.getBrandModels().add(updateBrandModel);
+            repositoryBrand.save(brand);
+        }
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

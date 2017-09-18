@@ -14,6 +14,7 @@ app.controller("ctrlProduct", function ($scope, $http, $window) {
                 params: {index: index}
             }
         ).then(function (response) {
+            $scope.detalProduct = response.data;
             console.log(response.data);
         }, function (response) {
 
@@ -42,6 +43,7 @@ app.controller("ctrlProduct", function ($scope, $http, $window) {
 
     //---------------product---------------------------
 
+
     var updateProductVar = function () {
         $scope.errorValidTitleProduct = false;
         $scope.errorNonTitleProduct = false;
@@ -50,6 +52,7 @@ app.controller("ctrlProduct", function ($scope, $http, $window) {
         $scope.titleProduct = '';
         $scope.errorNonTitleProductInput = '';
         $scope.brendSelect = '';
+        $scope.brendSelected = [];
         $scope.errorNonBrendProduct = false;
         $scope.errorNonBrendProductInput = '';
         $scope.categorySelect = '';
@@ -62,21 +65,30 @@ app.controller("ctrlProduct", function ($scope, $http, $window) {
 
     $scope.showSelectedBrendValue = function (brend) {
         $scope.errorNonBrendProduct = false;
-        $scope.errorNonBrendProductInput = ''
+        $scope.errorNonBrendProductInput = '';
+        if ($scope.brendSelected.indexOf(brend) === -1){
+            $scope.brendSelected.push(brend);
+            console.log($scope.brendSelected);
+        }
     };
     $scope.showSelectedCategoryValue = function (category) {
         $scope.errorNonCetegoryProduct = false;
         $scope.errorNonCetegoryProductInput = '';
     };
 
+    $scope.deleteBrandSelected = function (index) {
+        $scope.brendSelected.splice(index, 1);
+    };
+
 
     $scope.addNewProductBtn = function () {
 
+        console.log($scope.brendSelected.length);
         if ($scope.titleProduct === '') {
             $scope.errorNonTitleProduct = true;
             $scope.errorNonTitleProductInput = "errorInput"
         }
-        if ($scope.brendSelect === '') {
+        if ($scope.brendSelected.length === 0) {
             $scope.errorNonBrendProduct = true;
             $scope.errorNonBrendProductInput = "errorInput"
         }
@@ -85,13 +97,13 @@ app.controller("ctrlProduct", function ($scope, $http, $window) {
             $scope.errorNonCetegoryProductInput = 'errorInput';
         }
 
-        if ($scope.categorySelect !== '' && $scope.brendSelect !== '' && $scope.titleProduct !== '') {
+        if ($scope.categorySelect !== '' && $scope.brendSelected !== 0 && $scope.titleProduct !== '') {
             $http({
                     method: "GET",
                     url: "/productRest/addNewProduct/",
                     params: {
                         titleProduct: $scope.titleProduct,
-                        brendProduct: $scope.brendSelect,
+                        brendProducts: $scope.brendSelected,
                         categoryProduct: $scope.categorySelect,
                         purchasePriceProduct: $scope.purchasePrice,
                         percentageMarkupProduct: $scope.percentageMarkup,

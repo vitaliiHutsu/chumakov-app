@@ -32,12 +32,15 @@
                         <div class="form-group">
 
                             <label for="brendProductId">Бренд товара</label>
-                            <p class="errorTitle" ng-show="errorNonBrendProduct">Поле не должно быть пустым!!!</p>
+                            <p class="errorTitle" ng-show="errorNonBrendProduct">Не один бренд не выбран</p>
                             <select ng-model="brendSelect" ng-class="errorNonBrendProductInput" ng-change="showSelectedBrendValue(brendSelect)"
                                     class="form-control" id="brendProductId">
                                 <option ng-value="brendSelect"
                                         ng-repeat="brendSelect in allTitleBrand">{{brendSelect}}</option>
                             </select>
+                            <p ng-repeat="x in brendSelected">{{x}}
+                                <a href="#" ng-click="deleteBrandSelected($index)"><img th:src="@{/image/1075332.png}"
+                                                                                        src="../../image/1075332.png" alt="Удалить"/></a></p>
                         </div>
 
                         <div class="form-group">
