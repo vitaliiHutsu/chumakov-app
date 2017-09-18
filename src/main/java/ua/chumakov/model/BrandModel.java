@@ -1,6 +1,8 @@
 package ua.chumakov.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
@@ -20,18 +22,22 @@ public class BrandModel implements Serializable {
     private int id;
     private Date date;
     @NotNull
+    @Column(unique = true)
     private String title;
     private double purchasePrice;  //цена закупки
     private double sellingPrice;  //цена продажи
     @ManyToMany(mappedBy = "brandModels", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
     private Set<Brand> brands = new HashSet<>();
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "sale_and_brand_model",
             joinColumns = @JoinColumn(name = "sale_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "brand_model_id", referencedColumnName = "id"))
+    @JsonBackReference
     private Set<Sale> sales;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "category_brand_model")
+    @JsonManagedReference
     private Category category;
 
     private String notation;
@@ -107,4 +113,5 @@ public class BrandModel implements Serializable {
     public void setBrands(Set<Brand> brands) {
         this.brands = brands;
     }
+
 }

@@ -1,6 +1,8 @@
 package ua.chumakov.controller.rest;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -110,23 +112,26 @@ public class ProductRestController {
         brandModel.setNotation(notationProduct);
         double wrappingPrice = (Double.valueOf(purchasePriceProduct) * Double.valueOf(percentageMarkupProduct)) / 100;
         brandModel.setSellingPrice(Double.valueOf(purchasePriceProduct) + wrappingPrice);
-        Set<Brand> brands = new HashSet<>();
-        brands.add(repositoryBrand.findByTitle(brendProduct));
-        brandModel.setBrands(brands);
+        try {
+            brandModelRepository.save(brandModel);
+        } catch (DataIntegrityViolationException ex) {
+            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+        }
         brandModelRepository.save(brandModel);
+        Brand brand = repositoryBrand.findByTitle(brendProduct);
+        brand.getBrandModels().add(brandModelRepository.findByTitle(titleProduct));
+        repositoryBrand.save(brand);
         System.out.println(wrappingPrice);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "getAllProduct/", method = RequestMethod.GET)
+        @RequestMapping(value = "getAllProduct/", method = RequestMethod.GET)
     public ResponseEntity<?> getAllProduct(){
         Set<BrandModel> brandModels = brandModelRepository.findAll();
-        System.out.println("------------------------hello ----------------------");
-        System.out.println(brandModels);
         return new ResponseEntity<>(brandModels,HttpStatus.OK);
     }
     @RequestMapping(value = "getProductById/", method = RequestMethod.GET)
-    public ResponseEntity<?> getProductById(@RequestParam int index){
+    public ResponseEntity<?> getProductById(@RequestParam int index) {
         BrandModel brandModel = brandModelRepository.findById(index);
         Set<Brand> brands = repositoryBrand.findByBrandModels(brandModel);
         System.out.println(brands.size());

@@ -1,10 +1,14 @@
 package ua.chumakov.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import ua.chumakov.validation.BrandValidTitleAnnotation;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -22,7 +26,8 @@ public class Brand implements Serializable{
     @JoinTable(name = "brand_and_brand_model",
             joinColumns = @JoinColumn(name = "brand_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "brand_model_id", referencedColumnName = "id"))
-    private Set<BrandModel> brandModels;
+    @JsonBackReference
+    private Set<BrandModel> brandModels = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "brand_and_provider",

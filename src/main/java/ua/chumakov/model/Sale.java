@@ -1,5 +1,7 @@
 package ua.chumakov.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -22,6 +24,7 @@ public class Sale implements Serializable{
     private Set<Client> clients;
 
     @ManyToMany(mappedBy = "sales")
+    @JsonManagedReference
     private Set<BrandModel> brandModels;
 
     public Set<BrandModel> getBrandModels() {

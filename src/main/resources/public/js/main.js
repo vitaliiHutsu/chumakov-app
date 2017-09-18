@@ -11,14 +11,14 @@ app.controller("ctrlProduct", function ($scope, $http, $window) {
         $http({
                 method: "GET",
                 url: "/productRest/getProductById/",
-                params: {index:index}
+                params: {index: index}
             }
         ).then(function (response) {
             console.log(response.data);
         }, function (response) {
 
         });
-    }
+    };
 
     //-------------------------------------------------------------
     //------------All Product--------------------------
@@ -103,7 +103,10 @@ app.controller("ctrlProduct", function ($scope, $http, $window) {
                 $('#modalNewProductBtn').modal('hide');
                 $window.location.href = "/product"
             }, function (response) {
-
+                if (response.status === 417) {
+                    $scope.errorValidTitleProduct = true;
+                    $scope.errorNonTitleProductInput = "errorInput"
+                }
             })
         }
 
@@ -112,6 +115,7 @@ app.controller("ctrlProduct", function ($scope, $http, $window) {
     $scope.keydownInputTextTitleProduct = function () {
         $scope.errorNonTitleProduct = false;
         $scope.errorNonTitleProductInput = '';
+        $scope.errorValidTitleProduct = false;
     };
 
     $scope.showModalAddNewProduct = false;

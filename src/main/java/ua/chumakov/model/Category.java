@@ -1,5 +1,6 @@
 package ua.chumakov.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import ua.chumakov.validation.CategoryValidTitleAnnotation;
@@ -23,6 +24,7 @@ public class Category implements Serializable{
     @CategoryValidTitleAnnotation
     private String title;
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @JsonBackReference
     private Set<BrandModel> brandModels;
 
     public int getId() {
