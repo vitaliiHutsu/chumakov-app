@@ -22,20 +22,30 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><h4>{{detalProduct.title}}</h4></div>
                         <div class="panel-body">
-                            <blockquote>
-                                <p>Цена закупки</p>
-                                <footer>{{detalProduct.purchasePrice | currency}}<cite title="Source Title"></cite></footer>
-                            </blockquote>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <blockquote>
+                                            <p>Цена закупки</p>
+                                            <footer>{{detalProduct.purchasePrice | currency}}<cite
+                                                    title="Source Title"></cite></footer>
+                                        </blockquote>
 
-                            <blockquote>
-                                <p>Цена продажи</p>
-                                <footer>{{detalProduct.sellingPrice | currency}}<cite title="Source Title"></cite></footer>
-                            </blockquote>
+                                        <blockquote>
+                                            <p>Цена продажи</p>
+                                            <footer>{{detalProduct.sellingPrice | currency}}<cite
+                                                    title="Source Title"></cite></footer>
+                                        </blockquote>
 
-                            <blockquote>
-                                <p>Бренды</p>
-                                <footer ng-repeat="x in detalProduct.brands">{{x.title}}<cite title="Source Title"></cite></footer>
-                            </blockquote>
+                                        <blockquote>
+                                            <p>Бренды</p>
+                                            <footer ng-repeat="x in detalProduct.brands">{{x.title}}<cite
+                                                    title="Source Title"></cite></footer>
+                                        </blockquote>
+                                    </div>
+                                    <div class="col-md-6"> </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

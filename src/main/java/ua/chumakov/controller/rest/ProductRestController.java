@@ -126,7 +126,7 @@ public class ProductRestController {
             brand.getBrandModels().add(updateBrandModel);
             repositoryBrand.save(brand);
         }
-
+        
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
