@@ -49,6 +49,7 @@
 
             <div th:replace="fragments/modalAddProduct :: modalAddNewProduct"/>
             <div th:replace="fragments/modalDetalProduct :: modalProductDetalis"/>
+            <div th:replace="fragments/modalUpdateProduct :: modalUpdateProduct"/>
 
             <div class="panel panel-default">
                 <div class="panel-heading">Товары</div>
@@ -61,6 +62,7 @@
                                 <th>Модель</th>
                                 <th>Цена закупки</th>
                                 <th>Цена продажи</th>
+                                <th>Редактировать</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -71,6 +73,8 @@
                                        data-toggle="modal" data-target="#modalProductDetalis">{{x.title}}</a></td>
                                 <td>{{x.purchasePrice | currency}}</td>
                                 <td>{{x.sellingPrice | currency}}</td>
+                                <td><a href="#updade-{{x.id}}" data-toggle="modal"
+                                       data-target="#modalUpdateProduct">link</a></td>
                             </tr>
                             </tbody>
                         </table>
