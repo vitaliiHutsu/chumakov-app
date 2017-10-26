@@ -22,12 +22,6 @@ public class Brand implements Serializable{
     private String title;
     private String notation;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "brand_and_brand_model",
-            joinColumns = @JoinColumn(name = "brand_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "brand_model_id", referencedColumnName = "id"))
-    @JsonBackReference
-    private Set<BrandModel> brandModels = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "brand_and_provider",
@@ -41,14 +35,6 @@ public class Brand implements Serializable{
 
     public void setProviders(Set<Provider> providers) {
         this.providers = providers;
-    }
-
-    public Set<BrandModel> getBrandModels() {
-        return brandModels;
-    }
-
-    public void setBrandModels(Set<BrandModel> brandModels) {
-        this.brandModels = brandModels;
     }
 
     public String getTitle() {

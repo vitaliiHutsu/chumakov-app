@@ -10,8 +10,9 @@
 
 <div th:fragment="modalProductDetalis">
     <!-- Modal -->
-    <div class="modal fade" id="modalProductDetalis" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade bs-example-modal-lg" id="modalProductDetalis" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -19,34 +20,44 @@
                     <h4 class="modal-title" id="myModalLabel">Описания товара</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="panel panel-default">
-                        <div class="panel-heading"><h4>{{detalProduct.title}}</h4></div>
-                        <div class="panel-body">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <blockquote>
-                                            <p>Цена закупки</p>
-                                            <footer>{{detalProduct.purchasePrice | currency}}<cite
-                                                    title="Source Title"></cite></footer>
-                                        </blockquote>
-
-                                        <blockquote>
-                                            <p>Цена продажи</p>
-                                            <footer>{{detalProduct.sellingPrice | currency}}<cite
-                                                    title="Source Title"></cite></footer>
-                                        </blockquote>
-
-                                        <blockquote>
-                                            <p>Бренды</p>
-                                            <footer ng-repeat="x in detalProduct.brands">{{x.title}}<cite
-                                                    title="Source Title"></cite></footer>
-                                        </blockquote>
-                                    </div>
-                                    <div class="col-md-6"> </div>
-                                </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img ng-src="{{detalProduct.picture}}" class="img-rounded" alt="Cinque Terre" width="100%"
+                                 height="100%"/>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <blockquote>
+                                    <p>Название:</p>
+                                    <footer style="color: #449d44">{{detalProduct.name}}</footer>
+                                </blockquote>
+                                <hr/>
+                            </div>
+                            <div class="row">
+                                <blockquote>
+                                    <p>Код товара:</p>
+                                    <footer style="color: #449d44">{{detalProduct.vendorCode}}</footer>
+                                </blockquote>
+                                <hr/>
+                            </div>
+                            <div class="row">
+                                <blockquote>
+                                    <p><a href="{{detalProduct.url}}" ng-src="{{detalProduct.url}}" target="_blank">
+                                        Товар на сайте:
+                                    </a></p>
+                                </blockquote>
+                                <hr/>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        <blockquote>
+                            <p ng-bind-html="sce.trustAsHtml(detalProduct.description)"></p>
+                        </blockquote>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6"><h4 style="color: #c9302c">Цена: - {{detalProduct.price}}</h4></div>
+                        <div class="col-md-6"><a href="/product/checkout/{{detalProduct.id}}" type="button" style="float: right" class="btn btn-success">Оформить заказ</a></div>
                     </div>
                 </div>
                 <div class="modal-footer">

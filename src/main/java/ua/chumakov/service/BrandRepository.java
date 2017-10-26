@@ -2,7 +2,6 @@ package ua.chumakov.service;
 
 import org.springframework.data.repository.CrudRepository;
 import ua.chumakov.model.Brand;
-import ua.chumakov.model.BrandModel;
 
 import java.util.Set;
 
@@ -12,5 +11,4 @@ import java.util.Set;
 public interface BrandRepository extends CrudRepository<Brand, Integer> {
     Brand findByTitle(String title);
     Set<Brand> findAll();
-    Set<Brand> findByBrandModels(BrandModel brandModel);
 }

@@ -20,9 +20,15 @@
                 </div>
                 <div class="modal-body">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Hello</div>
+                        <div class="panel-heading">{{updateProduct.title}}</div>
                         <div class="panel-body">
-
+                            <form>
+                                <div class="form-group">
+                                    <label for="updateTitleProduct">Название товара:</label>
+                                    <input type="number" class="form-control"
+                                          ng-model="updateProduct.purchasePrice" id="updateTitleProduct" placeholder="Название товара"/>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

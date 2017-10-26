@@ -23,18 +23,6 @@ public class Sale implements Serializable{
     @ManyToMany(mappedBy = "sales")
     private Set<Client> clients;
 
-    @ManyToMany(mappedBy = "sales")
-    @JsonManagedReference
-    private Set<BrandModel> brandModels;
-
-    public Set<BrandModel> getBrandModels() {
-        return brandModels;
-    }
-
-    public void setBrandModels(Set<BrandModel> brandModels) {
-        this.brandModels = brandModels;
-    }
-
     public Set<Client> getClients() {
         return clients;
     }
